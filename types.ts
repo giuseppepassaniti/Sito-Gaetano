@@ -24,6 +24,7 @@ export interface StaticTour {
   description: string;
   highlights: string[];
   priceEstimate: string;
+  image: string;
 }
 
 export enum Island {

@@ -15,7 +15,8 @@ const TOURS: StaticTour[] = [
     duration: '8 Hours',
     description: 'The ultimate introduction to the island. We start at the silent city of Mdina, proceed to the breathtaking Dingli Cliffs, visit the artisan crafts village, and finish with the capital city, Valletta.',
     highlights: ['Mdina & Rabat', 'Dingli Cliffs', 'Ta’ Qali Crafts Village', 'Valletta & St. John’s Co-Cathedral'],
-    priceEstimate: '€160'
+    priceEstimate: '€160',
+    image: 'https://images.unsplash.com/photo-1598525623702-c5d1dc3cb901?q=80&w=1000&auto=format&fit=crop'
   },
   {
     id: 'gozo-explorer',
@@ -24,7 +25,8 @@ const TOURS: StaticTour[] = [
     duration: '7-8 Hours',
     description: 'A ferry crossing takes us to the greener, slower-paced sister island. We explore ancient citadels, red sandy beaches, and dramatic coastal formations.',
     highlights: ['Ferry Crossing included', 'Cittadella (Victoria)', 'Dwejra (Inland Sea)', 'Ramla Bay & Calypso Cave'],
-    priceEstimate: '€180'
+    priceEstimate: '€180',
+    image: 'https://images.unsplash.com/photo-1598351608678-4183a7168eb4?q=80&w=1000&auto=format&fit=crop'
   },
   {
     id: 'south-market',
@@ -33,7 +35,8 @@ const TOURS: StaticTour[] = [
     duration: '5 Hours',
     description: 'Discover the authentic fishing village of Marsaxlokk with its colorful Luzzu boats, followed by a boat trip to the stunning Blue Grotto caves.',
     highlights: ['Marsaxlokk Fishing Village', 'Blue Grotto (Boat Optional)', 'Hagar Qim Temples', 'Wied iz-Zurrieq'],
-    priceEstimate: '€120'
+    priceEstimate: '€120',
+    image: 'https://images.unsplash.com/photo-1522916375516-c2e437823738?q=80&w=1000&auto=format&fit=crop'
   },
   {
     id: 'three-cities',
@@ -42,7 +45,8 @@ const TOURS: StaticTour[] = [
     duration: '4 Hours',
     description: 'Walk in the footsteps of the Knights of St. John. We explore Vittoriosa, Senglea, and Cospicua, offering the best views of the Grand Harbour.',
     highlights: ['Fort St. Angelo', 'Gardjola Gardens', 'Birgu Waterfront', 'Maritime Museum area'],
-    priceEstimate: '€100'
+    priceEstimate: '€100',
+    image: 'https://images.unsplash.com/photo-1566574506363-672154a222f9?q=80&w=1000&auto=format&fit=crop'
   },
   {
     id: 'prehistoric-malta',
@@ -51,7 +55,8 @@ const TOURS: StaticTour[] = [
     duration: '5 Hours',
     description: 'Malta has freestanding structures older than the Pyramids. This tour focuses on archaeology and ancient history.',
     highlights: ['Ggantija (if Gozo)', 'Hagar Qim & Mnajdra', 'Tarxien Temples', 'Ghar Dalam Cave'],
-    priceEstimate: '€130'
+    priceEstimate: '€130',
+    image: 'https://images.unsplash.com/photo-1604918180155-b6b096898b6c?q=80&w=1000&auto=format&fit=crop'
   },
   {
     id: 'night-tour',
@@ -60,7 +65,8 @@ const TOURS: StaticTour[] = [
     duration: '4 Hours',
     description: 'See the island beautifully illuminated. Perfect for a romantic evening or a relaxed drive after dinner.',
     highlights: ['Valletta Waterfront', 'Mdina Bastions at Night', 'St. Julian’s Promenade', 'Popeye Village Viewpoint'],
-    priceEstimate: '€110'
+    priceEstimate: '€110',
+    image: 'https://images.unsplash.com/photo-1575897679079-8a40d6c6f39e?q=80&w=1000&auto=format&fit=crop'
   }
 ];
 
@@ -107,30 +113,41 @@ const TourSelector: React.FC<TourSelectorProps> = ({ onBookTour }) => {
           {filteredTours.map((tour) => (
             <div key={tour.id} className="group bg-navy-900 border border-slate-800 hover:border-gold-400/50 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-gold-400/10 flex flex-col">
               
-              {/* Card Header */}
-              <div className="p-6 border-b border-slate-800/50 bg-slate-900/50">
-                <div className="flex justify-between items-start mb-4">
-                  <span className={`text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider ${tour.island === 'Gozo' ? 'bg-green-900/30 text-green-400' : 'bg-blue-900/30 text-blue-400'}`}>
-                    {tour.island}
-                  </span>
-                  <div className="flex items-center text-gold-400 text-xs font-bold gap-1 bg-gold-400/10 px-2 py-1 rounded-full">
-                    <Clock size={12} />
-                    {tour.duration}
-                  </div>
+              {/* Image Header */}
+              <div className="h-48 overflow-hidden relative">
+                <img 
+                  src={tour.image} 
+                  alt={tour.title} 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent"></div>
+                <div className="absolute top-4 left-4">
+                    <span className={`text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-lg ${tour.island === 'Gozo' ? 'bg-green-600 text-white' : 'bg-blue-600 text-white'}`}>
+                        {tour.island}
+                    </span>
                 </div>
-                <h3 className="text-xl font-bold text-white font-serif group-hover:text-gold-400 transition-colors">
-                  {tour.title}
-                </h3>
               </div>
 
+              {/* Card Content */}
               <div className="p-6 flex-grow flex flex-col">
+                <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-xl font-bold text-white font-serif group-hover:text-gold-400 transition-colors">
+                    {tour.title}
+                    </h3>
+                </div>
+                
+                <div className="flex items-center gap-2 mb-4 text-gold-400 text-xs font-bold">
+                    <Clock size={14} />
+                    {tour.duration}
+                </div>
+
                 <p className="text-slate-400 text-sm mb-6 leading-relaxed">
                   {tour.description}
                 </p>
 
-                <div className="space-y-3 mb-8 flex-grow">
-                  <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Highlights:</p>
-                  {tour.highlights.map((highlight, idx) => (
+                <div className="space-y-2 mb-8 flex-grow border-t border-slate-800 pt-4">
+                  <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Highlights:</p>
+                  {tour.highlights.slice(0, 3).map((highlight, idx) => (
                     <div key={idx} className="flex items-start gap-2 text-sm text-slate-300">
                       <CheckCircle2 size={14} className="text-gold-500 shrink-0 mt-0.5" />
                       <span>{highlight}</span>
@@ -138,16 +155,16 @@ const TourSelector: React.FC<TourSelectorProps> = ({ onBookTour }) => {
                   ))}
                 </div>
 
-                <div className="pt-6 border-t border-slate-800 flex items-center justify-between">
+                <div className="mt-auto flex items-center justify-between pt-4">
                    <div className="flex flex-col">
                     <span className="text-[10px] text-slate-500 uppercase">Vehicle & Driver</span>
                     <span className="text-lg font-bold text-white">{tour.priceEstimate}</span>
                   </div>
                   <button 
                     onClick={() => onBookTour(tour.title)}
-                    className="flex items-center gap-2 bg-white text-navy-900 hover:bg-gold-400 px-5 py-2.5 rounded-lg font-bold transition-all text-sm"
+                    className="flex items-center gap-2 bg-white text-navy-900 hover:bg-gold-400 px-4 py-2 rounded-lg font-bold transition-all text-sm"
                   >
-                    Book This Tour
+                    Book
                     <ArrowRight size={16} />
                   </button>
                 </div>
