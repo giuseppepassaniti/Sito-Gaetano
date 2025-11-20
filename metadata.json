@@ -1,4 +1,5 @@
 {
   "name": "Malta Prestige Drive",
-  "description": "A premium private chauffeur booking platform for Malta and Gozo, featuring AI-powered tour itinerary planning."
+  "description": "A premium private chauffeur booking platform for Malta and Gozo, featuring AI-powered tour itinerary planning.",
+  "requestFramePermissions": []
 }
