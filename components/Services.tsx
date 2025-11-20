@@ -37,6 +37,11 @@ const Services: React.FC<ServicesProps> = ({ limit, onBookService }) => {
 
   const displayServices = limit ? services.slice(0, limit) : services;
 
+  // Dynamically adjust columns: if limit is 3, use 3 cols max. If no limit (4 items), use 4 cols.
+  const gridColsClass = limit === 3 
+    ? 'lg:grid-cols-3' 
+    : 'lg:grid-cols-4';
+
   return (
     <section className="py-12 md:py-24 bg-navy-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,11 +52,11 @@ const Services: React.FC<ServicesProps> = ({ limit, onBookService }) => {
              </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className={`grid grid-cols-1 md:grid-cols-2 ${gridColsClass} gap-6 justify-items-center`}>
           {displayServices.map((service, index) => (
             <div 
               key={index} 
-              className="bg-slate-900 p-8 border border-slate-800 hover:border-gold-400/50 transition-all duration-300 hover:-translate-y-1 flex flex-col rounded-xl group"
+              className="bg-slate-900 p-8 border border-slate-800 hover:border-gold-400/50 transition-all duration-300 hover:-translate-y-1 flex flex-col rounded-xl group w-full"
             >
               <div className="flex justify-between items-start mb-6">
                 <div className="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center text-gold-400 group-hover:bg-gold-400 group-hover:text-navy-900 transition-colors">
