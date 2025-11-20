@@ -16,7 +16,7 @@ const TOURS: StaticTour[] = [
     description: 'The ultimate introduction to the island. We start at the silent city of Mdina, proceed to the breathtaking Dingli Cliffs, visit the artisan crafts village, and finish with the capital city, Valletta.',
     highlights: ['Mdina & Rabat', 'Dingli Cliffs', 'Ta’ Qali Crafts Village', 'Valletta & St. John’s Co-Cathedral'],
     priceEstimate: '€160',
-    image: 'https://images.unsplash.com/photo-1538050765925-f547eb1292cb?q=80&w=1200&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1548678650-431d18365f55?q=80&w=1000&auto=format&fit=crop'
   },
   {
     id: 'gozo-explorer',
@@ -26,7 +26,7 @@ const TOURS: StaticTour[] = [
     description: 'A ferry crossing takes us to the greener, slower-paced sister island. We explore ancient citadels, red sandy beaches, and dramatic coastal formations.',
     highlights: ['Ferry Crossing included', 'Cittadella (Victoria)', 'Dwejra (Inland Sea)', 'Ramla Bay & Calypso Cave'],
     priceEstimate: '€180',
-    image: 'https://images.unsplash.com/photo-1556623467-43f545765c0a?q=80&w=1200&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1593346356996-373896522c88?q=80&w=1000&auto=format&fit=crop'
   },
   {
     id: 'south-market',
@@ -36,7 +36,7 @@ const TOURS: StaticTour[] = [
     description: 'Discover the authentic fishing village of Marsaxlokk with its colorful Luzzu boats, followed by a boat trip to the stunning Blue Grotto caves.',
     highlights: ['Marsaxlokk Fishing Village', 'Blue Grotto (Boat Optional)', 'Hagar Qim Temples', 'Wied iz-Zurrieq'],
     priceEstimate: '€120',
-    image: 'https://images.unsplash.com/photo-1596713629555-79a6c0729600?q=80&w=1200&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1523531294919-943c3f67120b?q=80&w=1000&auto=format&fit=crop'
   },
   {
     id: 'three-cities',
@@ -46,7 +46,7 @@ const TOURS: StaticTour[] = [
     description: 'Walk in the footsteps of the Knights of St. John. We explore Vittoriosa, Senglea, and Cospicua, offering the best views of the Grand Harbour.',
     highlights: ['Fort St. Angelo', 'Gardjola Gardens', 'Birgu Waterfront', 'Maritime Museum area'],
     priceEstimate: '€100',
-    image: 'https://images.unsplash.com/photo-1566574506363-672154a222f9?q=80&w=1200&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1630338454207-398b10b7b475?q=80&w=1000&auto=format&fit=crop'
   },
   {
     id: 'prehistoric-malta',
@@ -56,7 +56,7 @@ const TOURS: StaticTour[] = [
     description: 'Malta has freestanding structures older than the Pyramids. This tour focuses on archaeology and ancient history.',
     highlights: ['Ggantija (if Gozo)', 'Hagar Qim & Mnajdra', 'Tarxien Temples', 'Ghar Dalam Cave'],
     priceEstimate: '€130',
-    image: 'https://images.unsplash.com/photo-1604918180155-b6b096898b6c?q=80&w=1200&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1598611940281-d8632d175055?q=80&w=1000&auto=format&fit=crop'
   },
   {
     id: 'night-tour',
@@ -66,7 +66,7 @@ const TOURS: StaticTour[] = [
     description: 'See the island beautifully illuminated. Perfect for a romantic evening or a relaxed drive after dinner.',
     highlights: ['Valletta Waterfront', 'Mdina Bastions at Night', 'St. Julian’s Promenade', 'Popeye Village Viewpoint'],
     priceEstimate: '€110',
-    image: 'https://images.unsplash.com/photo-1575897679079-8a40d6c6f39e?q=80&w=1200&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1629727295272-74c3d88e5f01?q=80&w=1000&auto=format&fit=crop'
   }
 ];
 
@@ -114,12 +114,16 @@ const TourSelector: React.FC<TourSelectorProps> = ({ onBookTour }) => {
             <div key={tour.id} className="group bg-navy-900 border border-slate-800 hover:border-gold-400/50 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-gold-400/10 flex flex-col">
               
               {/* Image Header - INCREASED HEIGHT for better visibility */}
-              <div className="h-64 overflow-hidden relative">
+              <div className="h-64 overflow-hidden relative bg-slate-800">
                 <img 
                   src={tour.image} 
                   alt={tour.title} 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = 'none';
+                    // Could show a placeholder div here instead
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent opacity-80"></div>
                 <div className="absolute top-4 left-4">
