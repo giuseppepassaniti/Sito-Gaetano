@@ -7,7 +7,6 @@ import WhyUs from './components/WhyUs';
 import TourSelector from './components/TourSelector';
 import BookingForm from './components/BookingForm';
 import Footer from './components/Footer';
-import { ServiceType } from './types';
 
 export type PageView = 'home' | 'services' | 'about' | 'tours' | 'contact';
 
