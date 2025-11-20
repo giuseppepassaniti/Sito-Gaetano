@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { ServiceType, BookingRequest } from '../types';
 import { Send, CheckCircle } from 'lucide-react';
 
-const BookingForm: React.FC = () => {
+interface BookingFormProps {
+  preSelectedTour?: string;
+}
+
+const BookingForm: React.FC<BookingFormProps> = ({ preSelectedTour }) => {
   const [formData, setFormData] = useState<BookingRequest>({
     name: '',
     email: '',
@@ -13,6 +18,17 @@ const BookingForm: React.FC = () => {
     notes: ''
   });
   const [submitted, setSubmitted] = useState(false);
+
+  // Auto-fill if a tour is passed via props
+  useEffect(() => {
+    if (preSelectedTour) {
+      setFormData(prev => ({
+        ...prev,
+        serviceType: ServiceType.TOUR,
+        notes: `I would like to book the: ${preSelectedTour}`
+      }));
+    }
+  }, [preSelectedTour]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -57,7 +73,10 @@ const BookingForm: React.FC = () => {
                 <h3 className="text-2xl font-bold text-slate-900 mb-2">Request Received</h3>
                 <p className="text-slate-600">Thank you, {formData.name}. We will contact you shortly at {formData.phone} to confirm your booking.</p>
                 <button 
-                  onClick={() => setSubmitted(false)}
+                  onClick={() => {
+                    setSubmitted(false);
+                    setFormData(prev => ({ ...prev, notes: '', serviceType: ServiceType.AIRPORT }));
+                  }}
                   className="mt-8 text-gold-600 font-bold hover:underline"
                 >
                   Make another request
@@ -148,13 +167,13 @@ const BookingForm: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Additional Notes (Pickup Location, Flight #)</label>
+                  <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Additional Notes</label>
                   <textarea 
                     name="notes"
                     value={formData.notes} 
                     onChange={handleChange}
                     className="w-full p-3 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent outline-none text-slate-800 h-24 resize-none"
-                    placeholder="Flight KM300, arriving at 14:00..."
+                    placeholder="Flight number, hotel name, or specific requests..."
                   ></textarea>
                 </div>
 

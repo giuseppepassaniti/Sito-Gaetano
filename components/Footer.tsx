@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Car, Facebook, Instagram, Twitter, MapPin, Phone, Mail } from 'lucide-react';
 import { PageView } from '../App';
@@ -37,7 +38,7 @@ const Footer: React.FC<FooterProps> = ({ onViewChange }) => {
             <ul className="space-y-3 text-sm text-slate-400">
               <li><button onClick={() => onViewChange('home')} className="hover:text-gold-400 transition-colors">Home</button></li>
               <li><button onClick={() => onViewChange('services')} className="hover:text-gold-400 transition-colors">Our Services</button></li>
-              <li><button onClick={() => onViewChange('planner')} className="hover:text-gold-400 transition-colors">AI Tour Planner</button></li>
+              <li><button onClick={() => onViewChange('tours')} className="hover:text-gold-400 transition-colors">Island Tours</button></li>
               <li><button onClick={() => onViewChange('about')} className="hover:text-gold-400 transition-colors">Why Choose Us</button></li>
             </ul>
           </div>

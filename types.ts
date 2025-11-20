@@ -1,3 +1,4 @@
+
 export enum ServiceType {
   AIRPORT = 'Airport Transfer',
   TOUR = 'Island Tour',
@@ -15,15 +16,14 @@ export interface BookingRequest {
   notes: string;
 }
 
-export interface TourStop {
-  locationName: string;
-  description: string;
-  estimatedDuration: string;
-}
-
-export interface GeneratedItinerary {
+export interface StaticTour {
+  id: string;
   title: string;
-  stops: TourStop[];
+  island: 'Malta' | 'Gozo';
+  duration: string;
+  description: string;
+  highlights: string[];
+  priceEstimate: string;
 }
 
 export enum Island {
@@ -32,8 +32,18 @@ export enum Island {
 }
 
 export enum TourInterest {
-  HISTORY = 'History & Culture',
-  BEACHES = 'Beaches & Relaxation',
-  FOOD = 'Food & Wine',
-  SCENIC = 'Scenic Views & Nature'
+  HISTORY = 'History',
+  CULTURE = 'Culture',
+  NATURE = 'Nature',
+  GASTRONOMY = 'Gastronomy',
+  SCENIC = 'Scenic Views'
+}
+
+export interface GeneratedItinerary {
+  title: string;
+  stops: {
+    locationName: string;
+    description: string;
+    estimatedDuration: string;
+  }[];
 }

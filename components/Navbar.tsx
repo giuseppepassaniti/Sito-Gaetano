@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Menu, X, Car, Phone } from 'lucide-react';
 import { PageView } from '../App';
@@ -13,8 +14,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onChangeView }) => {
   const navLinks: { name: string; view: PageView }[] = [
     { name: 'Home', view: 'home' },
     { name: 'Services', view: 'services' },
+    { name: 'Tours', view: 'tours' },
     { name: 'About', view: 'about' },
-    { name: 'Tour Planner', view: 'planner' },
   ];
 
   const handleNav = (view: PageView) => {
